@@ -19,34 +19,67 @@
             justify-content: center;
         }
         .camera {
+            width: 150px;
+            height: 100px;
             margin: 10px;
             border: 1px solid #ddd;
             padding: 10px;
             background: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
-        iframe {
+        .camera.expanded {
             width: 400px;
             height: 300px;
-            border: none;
+        }
+        .camera h3 {
+            font-size: 14px;
+            margin: 0;
+        }
+        .camera iframe {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .camera.expanded iframe {
+            display: block;
         }
     </style>
 </head>
 <body>
     <h1>Live Public Webcams</h1>
     <p>These are publicly available webcams from around the world.</p>
-    <div class="camera-container">
-        <div class="camera">
-            <h3>Beach Cam</h3>
-            <iframe src="https://example.com/beachcam"></iframe>
-        </div>
-        <div class="camera">
-            <h3>City View</h3>
-            <iframe src="https://example.com/cityview"></iframe>
-        </div>
-        <div class="camera">
-            <h3>Traffic Cam</h3>
-            <iframe src="https://example.com/trafficcam"></iframe>
-        </div>
-    </div>
+    <div class="camera-container" id="camera-container"></div>
+    <script>
+        let activeCamera = null;
+        
+        fetch('cameras.json')
+            .then(response => response.json())
+            .then(data => {
+                let container = document.getElementById('camera-container');
+                data.forEach(cam => {
+                    let camDiv = document.createElement('div');
+                    camDiv.classList.add('camera');
+                    camDiv.dataset.url = cam.url;
+                    camDiv.innerHTML = `<h3>${cam.description}</h3>`;
+                    camDiv.onclick = function () {
+                        if (activeCamera && activeCamera !== this) {
+                            activeCamera.classList.remove('expanded');
+                            activeCamera.innerHTML = `<h3>${activeCamera.dataset.description}</h3>`;
+                        }
+                        if (activeCamera !== this) {
+                            this.classList.add('expanded');
+                            this.innerHTML = `<iframe src="${this.dataset.url}" allowfullscreen></iframe>`;
+                            activeCamera = this;
+                        } else {
+                            activeCamera = null;
+                        }
+                    };
+                    container.appendChild(camDiv);
+                });
+            });
+    </script>
 </body>
 </html>
+
