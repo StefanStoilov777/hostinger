@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "description": "Beautiful Beach Cam",
+        "url": "https://example.com/beachcam"
+    },
+    {
+        "id": 2,
+        "description": "City Skyline View",
+        "url": "https://example.com/cityview"
+    },
+    {
+        "id": 3,
+        "description": "Downtown Traffic Cam",
+        "url": "https://example.com/trafficcam"
+    }
+]
