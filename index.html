@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Static Site</title>
+    <title>Live Public Webcams</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
         }
-        header {
-            background: #333;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
+        h1 {
+            color: #333;
         }
-        main {
-            padding: 20px;
+        .camera-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        footer {
-            margin-top: 20px;
+        .camera {
+            margin: 10px;
+            border: 1px solid #ddd;
             padding: 10px;
-            background: #333;
-            color: white;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
+            background: #fff;
+        }
+        iframe {
+            width: 400px;
+            height: 300px;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <header>Welcome to My Static Site</header>
-    <main>
-        <p>This is a simple static website using HTML and CSS.</p>
-    </main>
-    <footer>&copy; 2025 My Static Site</footer>
+    <h1>Live Public Webcams</h1>
+    <p>These are publicly available webcams from around the world.</p>
+    <div class="camera-container">
+        <div class="camera">
+            <h3>Beach Cam</h3>
+            <iframe src="https://example.com/beachcam"></iframe>
+        </div>
+        <div class="camera">
+            <h3>City View</h3>
+            <iframe src="https://example.com/cityview"></iframe>
+        </div>
+        <div class="camera">
+            <h3>Traffic Cam</h3>
+            <iframe src="https://example.com/trafficcam"></iframe>
+        </div>
+    </div>
 </body>
 </html>
