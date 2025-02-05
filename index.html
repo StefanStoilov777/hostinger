@@ -28,6 +28,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .camera.expanded {
             width: 400px;
@@ -52,6 +55,8 @@
     <p>These are publicly available webcams from around the world.</p>
     <div class="camera-container" id="camera-container"></div>
     <script>
+        let activeCamera = null;
+        
         fetch('cameras.json')
             .then(response => response.json())
             .then(data => {
@@ -72,6 +77,8 @@
                             this.innerHTML = `<h3>${this.dataset.description}</h3><iframe src="${this.dataset.url}" allowfullscreen></iframe>`;
                             activeCamera = this;
                         } else {
+                            this.classList.remove('expanded');
+                            this.innerHTML = `<h3>${this.dataset.description}</h3>`;
                             activeCamera = null;
                         }
                     };
@@ -82,4 +89,3 @@
     </script>
 </body>
 </html>
-
