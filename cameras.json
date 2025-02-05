@@ -1,17 +1,37 @@
 [
     {
         "id": 1,
-        "description": "Beautiful Beach Cam",
-        "url": "https://example.com/beachcam"
+        "description": "Garauge Monitoring Cam",
+        "url": "http://203.181.31.164:83/IMAGE.JPG"
     },
     {
         "id": 2,
-        "description": "City Skyline View",
-        "url": "https://example.com/cityview"
+        "description": "Parking Lot Cam",
+        "url": "http://119.242.68.153:83/IMAGE.JPG"
     },
     {
         "id": 3,
-        "description": "Downtown Traffic Cam",
+        "description": "Another Parking Lot Cam",
+        "url": "http://119.242.68.128:83/IMAGE.JPG"
+    },
+    {
+        "id": 4,
+        "description": "Parking Lot (wide view) Cam",
+        "url": "http://119.242.74.76:83/IMAGE.JPG"
+    },
+    {
+        "id": 5,
+        "description": "Parking Lot (small view) Cam",
         "url": "https://example.com/trafficcam"
-    }
+    },
+    {
+        "id": 6,
+        "description": "Street/Parking Lot Cam",
+        "url": "http://110.233.170.112:81/IMAGE.JPG"
+    },
+    {
+        "id": 7,
+        "description": "Parking Lot (medium view) Cam",
+        "url": "http://119.242.68.126:83/IMAGE.JPG"
+    },
 ]
