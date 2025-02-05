@@ -86,6 +86,17 @@
                 });
             })
             .catch(error => console.error("Error loading cameras:", error));
+
+        // Hack: Force load HTTP content
+        window.onload = function() {
+            const iframeElements = document.querySelectorAll('iframe');
+            iframeElements.forEach(iframe => {
+                if (iframe.src.startsWith('http://')) {
+                    // Force the iframe to load content over HTTP by setting the src dynamically
+                    iframe.src = iframe.src.replace('http://', 'https://');
+                }
+            });
+        };
     </script>
 </body>
 </html>
