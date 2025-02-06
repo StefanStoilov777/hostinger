@@ -63,11 +63,11 @@
                     camDiv.classList.add('camera');
                     camDiv.dataset.url = cam.url;
                     camDiv.dataset.description = cam.description;
-
-                    // Use wsrv.nl to proxy the image over HTTPS
-                    let proxyUrl = `https://wsrv.nl/?url=${encodeURIComponent(cam.url)}`;
-
-                    camDiv.innerHTML = `<h3>${cam.description}</h3><img src="${proxyUrl}" alt="${cam.description}">`;
+    
+                    // Use corsproxy.io to bypass HTTP content restrictions
+                    let proxyUrl = `https://corsproxy.io/?${encodeURIComponent(cam.url)}`;
+    
+                    camDiv.innerHTML = `<h3>${cam.description}</h3><img src="${proxyUrl}" alt="${cam.description}" onerror="this.style.display='none';">`;
                     
                     camDiv.onclick = function () {
                         if (activeCamera && activeCamera !== this) {
@@ -86,5 +86,6 @@
             })
             .catch(error => console.error("Error loading cameras:", error));
     </script>
+
 </body>
 </html>
