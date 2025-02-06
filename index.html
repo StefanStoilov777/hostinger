@@ -51,6 +51,51 @@
     <h1>Live Public Webcams</h1>
     <p>These are publicly available webcams from around the world.</p>
     <div class="camera-container" id="camera-container"></div>
-    <video src="http://203.181.31.164:83/IMAGE.JPG" autoplay controls></video>
+    <script>
+        let activeCamera = null;
+    
+        fetch('cameras.json')
+            .then(response => response.json())
+            .then(data => {
+                let container = document.getElementById('camera-container');
+                data.forEach(cam => {
+                    let camDiv = document.createElement('div');
+                    camDiv.classList.add('camera');
+                    camDiv.dataset.url = cam.url;
+                    camDiv.dataset.description = cam.description;
+    
+                    // Try embedding as <img> (for still frames)
+                    let img = document.createElement("img");
+                    img.src = cam.url;
+                    img.alt = cam.description;
+                    img.style.maxWidth = "100%";
+                    img.style.maxHeight = "100%";
+    
+                    // Handle errors (hide broken images)
+                    img.onerror = function () {
+                        this.style.display = 'none';
+                    };
+    
+                    camDiv.appendChild(document.createElement("h3")).innerText = cam.description;
+                    camDiv.appendChild(img);
+                    
+                    camDiv.onclick = function () {
+                        if (activeCamera && activeCamera !== this) {
+                            activeCamera.classList.remove('expanded');
+                        }
+                        if (activeCamera !== this) {
+                            this.classList.add('expanded');
+                            activeCamera = this;
+                        } else {
+                            this.classList.remove('expanded');
+                            activeCamera = null;
+                        }
+                    };
+    
+                    container.appendChild(camDiv);
+                });
+            })
+            .catch(error => console.error("Error loading cameras:", error));
+    </script>
 </body>
 </html>
